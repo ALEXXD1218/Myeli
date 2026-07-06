@@ -4,7 +4,7 @@ var doc=document,flower=doc.querySelector('.flower'),petalPartMarkup='<div class
   if (mainContent) mainContent.style.display = '';
   // Efecto typing en el botón al inicio
   var startBtn = document.getElementById('start-btn');
-  var btnText = 'Presioname';
+  var btnText = 'Holaaaa';
   startBtn.textContent = '';
   startBtn.disabled = true;
   let iBtn = 0;
@@ -35,7 +35,7 @@ var doc=document,flower=doc.querySelector('.flower'),petalPartMarkup='<div class
     'Bonitoo día \n guapaaa..!!',
     'Te amo muchooo \n muchoooo',
     'Y se queda \n demasiado corto..!',
-    '❤️LOVIUUUUUUUU❤️',
+    '❤️LOVIUUUUUU❤️',
   ];
   
   var wrapper = document.querySelector('.wrapper');
