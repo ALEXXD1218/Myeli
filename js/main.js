@@ -109,7 +109,6 @@ var doc=document,flower=doc.querySelector('.flower'),petalPartMarkup='<div class
       addDot();
       function animateGalaxy() {
         ctx.clearRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
-        let hue = 55; // amarillo
         let speedFactor = 1;
         if (analyser && dataArray) {
           analyser.getByteFrequencyData(dataArray);
@@ -117,11 +116,13 @@ var doc=document,flower=doc.querySelector('.flower'),petalPartMarkup='<div class
           speedFactor = 0.7 + (avg / 255) * 2.5;
         }
         for (let dot of dots) {
+          // Tonos cálidos mágicos (entre naranja y dorado)
+          let magicalHue = 30 + (Math.floor(dot.x) % 30); 
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, dot.r, 0, 2*Math.PI);
-          ctx.fillStyle = `hsla(${hue}, 80%, 70%, ${dot.alpha})`;
-          ctx.shadowColor = `hsla(${hue},80%,70%,0.5)`;
-          ctx.shadowBlur = 1; // Menos blur para mejor rendimiento
+          ctx.fillStyle = `hsla(${magicalHue}, 100%, 75%, ${dot.alpha})`;
+          ctx.shadowColor = `hsla(${magicalHue}, 100%, 70%, 0.8)`;
+          ctx.shadowBlur = 2;
           ctx.fill();
           dot.x += dot.dx * speedFactor;
           dot.y += dot.dy * speedFactor;
@@ -161,15 +162,18 @@ var doc=document,flower=doc.querySelector('.flower'),petalPartMarkup='<div class
           type();
         }
         function showNext() {
-          if (current < messages.length) {
-            typeText(messages[current], function() {
-              current++;
-              showNext();
-            });
-          } else {
-            if (typeof animateHeart === 'function') animateHeart();
+        if (current < messages.length) {
+          typeText(messages[current], function() {
+            current++;
+            showNext();
+          });
+        } else {
+          if (typeof animateHeart === 'function') {
+            animateHeart();
+            msg.classList.add('latido-activo'); // Aquí se activa el latido
           }
         }
+      }
         showNext();
         function animateHeart() {
           var heartCenterX = galaxyCanvas.width / 2;
@@ -229,7 +233,10 @@ var doc=document,flower=doc.querySelector('.flower'),petalPartMarkup='<div class
             showNext();
           });
         } else {
-          if (typeof animateHeart === 'function') animateHeart();
+          if (typeof animateHeart === 'function') {
+            animateHeart();
+            msg.classList.add('latido-activo'); // Aquí se activa el latido
+          }
         }
       }
       showNext();

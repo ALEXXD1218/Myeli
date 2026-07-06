@@ -263,3 +263,12 @@ BODY {
 .container:active::before {
   filter: blur(0.2em);
 }
+@keyframes latido {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); text-shadow: 0 0 15px rgba(255, 105, 180, 0.8); }
+  100% { transform: scale(1); }
+}
+.latido-activo {
+  display: inline-block; /* Necesario para que el transform funcione en texto */
+  animation: latido 1.3s infinite ease-in-out;
+}
